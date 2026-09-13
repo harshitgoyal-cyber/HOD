@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATHEMATICS TEST PAPER - Differentiation & Derivatives</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            user-select: none; /* Text selection disable karne ke liye */
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .instructions {
+            background-color: #eef6fc;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+        .question-card {
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .question-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+        }
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .option-btn {
+            background: #ffffff;
+            border: 1.5px solid #bdc3c7;
+            padding: 12px 15px;
+            border-radius: 6px;
+            text-align: left;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+            display: flex;
+            align-items: center;
+        }
+        .option-btn:hover:not(:disabled) {
+            background-color: #e8f4fc;
+            border-color: #3498db;
+        }
+        .option-btn:disabled {
+            cursor: not-allowed;
+        }
+        .option-btn.selected {
+            background-color: #d6eaf8;
+            border-color: #2980b9;
+            font-weight: bold;
+        }
+        .submit-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .btn-submit, .btn-start {
+            background-color: #27ae60;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-submit:hover, .btn-start:hover {
+            background-color: #219150;
+        }
+        #result-card {
+            display: none;
+            background: #e8f8f5;
+            border: 2px solid #2ecc71;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        .score-details {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
+        .score-box {
+            padding: 10px 15px;
+            border-radius: 6px;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        #quizForm {
+            display: none; /* Hide until test starts */
+        }
+        #start-screen {
+            text-align: center;
+            padding: 40px 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MATHEMATICS TEST PAPER</h1>
+    <h2>Topic: Differentiation & Derivatives</h2>
+
+    <div id="start-screen">
+        <div class="instructions">
+            <p><strong>Strict Exam Rules:</strong></p>
+            <p>1. Test Start karte hi browser **Full Screen Mode** mein chala jayega.</p>
+            <p>2. Agar aapne **Tab Switch**, **Window Minimize**, ya **Fullscreen Close** karne ki koshish ki, toh test **Auto-Submit** ho jayega.</p>
+        </div>
+        <button type="button" class="btn-start" onclick="startTest()">Start Lockdown Test</button>
+    </div>
+
+    <form id="quizForm">
+        <div class="instructions">
+            <p><strong>Time Allowed:</strong> 45 Minutes | <strong>Max Marks:</strong> 80 | <strong>Total Questions:</strong> 20</p>
+            <p><strong>Marking Scheme:</strong> +4 marks for correct answer, -1 mark for wrong answer.</p>
+        </div>
+
+        <div class="question-card" id="q1">
+            <div class="question-title">Q1. If \(y = \tan^{-1}\left(\frac{2x}{1-x^2}\right)\), \(0 < x < 1\), then \(\frac{dy}{dx}\) is:</div>
+            <div class="options-container">
+                <button type="button" class="option-btn" onclick="selectOption(1, 'a')">(a) \(\frac{1}{1+x^2}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(1, 'b')">(b) \(\frac{2}{1+x^2}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(1, 'c')">(c) \(\frac{2}{1-x^2}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(1, 'd')">(d) \(\frac{1}{1-x^2}\)</button>
+            </div>
+        </div>
+
+        <div class="question-card" id="q2">
+            <div class="question-title">Q2. If \(f(x)\) is an odd differentiable function and \(f'(4) = 7\), then \(f'(-4)\) is:</div>
+            <div class="options-container">
+                <button type="button" class="option-btn" onclick="selectOption(2, 'a')">(a) -7</button>
+                <button type="button" class="option-btn" onclick="selectOption(2, 'b')">(b) 7</button>
+                <button type="button" class="option-btn" onclick="selectOption(2, 'c')">(c) 4</button>
+                <button type="button" class="option-btn" onclick="selectOption(2, 'd')">(d) -4</button>
+            </div>
+        </div>
+
+        <div class="question-card" id="q3">
+            <div class="question-title">Q3. If \(y = x^x\), \(x > 0\), then \(\frac{dy}{dx}\) is:</div>
+            <div class="options-container">
+                <button type="button" class="option-btn" onclick="selectOption(3, 'a')">(a) \(x^x \log x\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(3, 'b')">(b) \(x^x (1 + \log x)\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(3, 'c')">(c) \(x^{x-1}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(3, 'd')">(d) \(\frac{x^x}{x}\)</button>
+            </div>
+        </div>
+
+        <div class="question-card" id="q4">
+            <div class="question-title">Q4. If \(y = \sin^{-1}\left(\frac{x}{\sqrt{1+x^2}}\right)\), then \(\frac{dy}{dx}\) is:</div>
+            <div class="options-container">
+                <button type="button" class="option-btn" onclick="selectOption(4, 'a')">(a) \(\frac{1}{1+x^2}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(4, 'b')">(b) \(\frac{1}{\sqrt{1+x^2}}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(4, 'c')">(c) \(\frac{1}{1-x^2}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(4, 'd')">(d) \(\sqrt{1+x^2}\)</button>
+            </div>
+        </div>
+
+        <div class="question-card" id="q5">
+            <div class="question-title">Q5. If \(x = a \cos t\), \(y = b \sin t\), then \(\frac{d^2y}{dx^2}\) is:</div>
+            <div class="options-container">
+                <button type="button" class="option-btn" onclick="selectOption(5, 'a')">(a) \(-\frac{b}{a^2 \cos^3 t}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(5, 'b')">(b) \(-\frac{a}{b^2 \sin^3 t}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(5, 'c')">(c) \(\frac{b}{a^2 \cos^3 t}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(5, 'd')">(d) \(-\frac{b}{a^2 \sin^3 t}\)</button>
+            </div>
+        </div>
+
+        <div class="question-card" id="q6">
+            <div class="question-title">Q6. If \(y = \log \sqrt{1+x^2}\), then \(\frac{dy}{dx}\) is:</div>
+            <div class="options-container">
+                <button type="button" class="option-btn" onclick="selectOption(6, 'a')">(a) \(\frac{1}{1+x^2}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(6, 'b')">(b) \(\frac{x}{1+x^2}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(6, 'c')">(c) \(\frac{x}{\sqrt{1+x^2}}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(6, 'd')">(d) \(\frac{1}{\sqrt{1+x^2}}\)</button>
+            </div>
+        </div>
+
+        <div class="question-card" id="q7">
+            <div class="question-title">Q7. If \(y = \cos^2(x^2)\), then \(\frac{dy}{dx}\) is:</div>
+            <div class="options-container">
+                <button type="button" class="option-btn" onclick="selectOption(7, 'a')">(a) \(-4x \sin(x^2) \cos(x^2)\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(7, 'b')">(b) \(4x \sin(x^2) \cos(x^2)\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(7, 'c')">(c) \(-2x \sin(x^2)\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(7, 'd')">(d) \(-4x \sin^2(x^2)\)</button>
+            </div>
+        </div>
+
+        <div class="question-card" id="q8">
+            <div class="question-title">Q8. The derivative of \(x^3 + e^x + 3^x + \cot x\) with respect to \(x\) is:</div>
+            <div class="options-container">
+                <button type="button" class="option-btn" onclick="selectOption(8, 'a')">(a) \(3x^2 + e^x + 3^x \log 3 - \csc^2 x\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(8, 'b')">(b) \(3x^2 + e^x + 3^x \log 3 + \csc^2 x\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(8, 'c')">(c) \(3x^2 + e^x + 3^x \log 3 - \sec^2 x\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(8, 'd')">(d) \(3x^2 + e^x + 3^x \log 3 + \sec^2 x\)</button>
+            </div>
+        </div>
+
+        <div class="question-card" id="q9">
+            <div class="question-title">Q9. Differentiate \(-\log(\log x)\), \(x > 1\) with respect to \(x\):</div>
+            <div class="options-container">
+                <button type="button" class="option-btn" onclick="selectOption(9, 'a')">(a) \(-\frac{1}{x \log x}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(9, 'b')">(b) \(\frac{1}{x \log x}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(9, 'c')">(c) \(-\frac{1}{\log x}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(9, 'd')">(d) \(\frac{1}{x}\)</button>
+            </div>
+        </div>
+
+        <div class="question-card" id="q10">
+            <div class="question-title">Q10. If \(x = y + \log y\), then \(\frac{dy}{dx}\) is:</div>
+            <div class="options-container">
+                <button type="button" class="option-btn" onclick="selectOption(10, 'a')">(a) \(\frac{y}{y+1}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(10, 'b')">(b) \(1 + \frac{1}{y}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(10, 'c')">(c) \(y + 1\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(10, 'd')">(d) \(\frac{1}{y}\)</button>
+            </div>
+        </div>
+
+        <div class="question-card" id="q11">
+            <div class="question-title">Q11. If \(y = (\sin x)^x\), then \(\frac{dy}{dx}\) is:</div>
+            <div class="options-container">
+                <button type="button" class="option-btn" onclick="selectOption(11, 'a')">(a) \((\sin x)^x [\log(\sin x) + x \cot x]\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(11, 'b')">(b) \((\sin x)^x [\log(\sin x) + x \tan x]\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(11, 'c')">(c) \(x(\sin x)^{x-1} \cos x\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(11, 'd')">(d) \((\sin x)^x \cot x\)</button>
+            </div>
+        </div>
+
+        <div class="question-card" id="q12">
+            <div class="question-title">Q12. If \(y = x \sin x\), then \(\frac{d^2y}{dx^2}\) is:</div>
+            <div class="options-container">
+                <button type="button" class="option-btn" onclick="selectOption(12, 'a')">(a) \(2 \cos x - x \sin x\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(12, 'b')">(b) \(\cos x - x \sin x\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(12, 'c')">(c) \(2 \sin x + x \cos x\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(12, 'd')">(d) \(-2 \sin x - x \cos x\)</button>
+            </div>
+        </div>
+
+        <div class="question-card" id="q13">
+            <div class="question-title">Q13. If \(f(x) = \tan^{-1}\left(\frac{1-\cos x}{\sin x}\right)\), \(0 < x < \pi\), then \(f'(x)\) is:</div>
+            <div class="options-container">
+                <button type="button" class="option-btn" onclick="selectOption(13, 'a')">(a) \(1/2\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(13, 'b')">(b) \(-1/2\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(13, 'c')">(c) 1</button>
+                <button type="button" class="option-btn" onclick="selectOption(13, 'd')">(d) -1</button>
+            </div>
+        </div>
+
+        <div class="question-card" id="q14">
+            <div class="question-title">Q14. If \(y = e^{\tan^{-1}x}\), then \((1+x^2)\frac{dy}{dx}\) is:</div>
+            <div class="options-container">
+                <button type="button" class="option-btn" onclick="selectOption(14, 'a')">(a) \(y\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(14, 'b')">(b) \(xy\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(14, 'c')">(c) 1</button>
+                <button type="button" class="option-btn" onclick="selectOption(14, 'd')">(d) \(e^x\)</button>
+            </div>
+        </div>
+
+        <div class="question-card" id="q15">
+            <div class="question-title">Q15. If \(y = \log(x + \sqrt{x^2+a^2})\), \(a > 0\), then \(\frac{dy}{dx}\) is:</div>
+            <div class="options-container">
+                <button type="button" class="option-btn" onclick="selectOption(15, 'a')">(a) \(\frac{1}{\sqrt{x^2+a^2}}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(15, 'b')">(b) \(\frac{1}{x+\sqrt{x^2+a^2}}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(15, 'c')">(c) \(\frac{x}{\sqrt{x^2+a^2}}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(15, 'd')">(d) \(\frac{1}{x^2+a^2}\)</button>
+            </div>
+        </div>
+
+        <div class="question-card" id="q16">
+            <div class="question-title">Q16. If \(x = a(t - \sin t)\), \(y = a(1 - \cos t)\), then \(\frac{dy}{dx}\) is:</div>
+            <div class="options-container">
+                <button type="button" class="option-btn" onclick="selectOption(16, 'a')">(a) \(\tan(t/2)\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(16, 'b')">(b) \(\cot(t/2)\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(16, 'c')">(c) \(\sin t\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(16, 'd')">(d) \(\cos t\)</button>
+            </div>
+        </div>
+
+        <div class="question-card" id="q17">
+            <div class="question-title">Q17. If \(y = x^2 + 1/x\), then \(\frac{dy}{dx}\) at \(x = 1\) is:</div>
+            <div class="options-container">
+                <button type="button" class="option-btn" onclick="selectOption(17, 'a')">(a) 1</button>
+                <button type="button" class="option-btn" onclick="selectOption(17, 'b')">(b) -1</button>
+                <button type="button" class="option-btn" onclick="selectOption(17, 'c')">(c) 3</button>
+                <button type="button" class="option-btn" onclick="selectOption(17, 'd')">(d) -3</button>
+            </div>
+        </div>
+
+        <div class="question-card" id="q18">
+            <div class="question-title">Q18. If \(y = \log_{10}x\), then \(\frac{dy}{dx}\) is:</div>
+            <div class="options-container">
+                <button type="button" class="option-btn" onclick="selectOption(18, 'a')">(a) \(1/10\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(18, 'b')">(b) \(\frac{1}{10 \log 10}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(18, 'c')">(c) 10</button>
+                <button type="button" class="option-btn" onclick="selectOption(18, 'd')">(d) \(\frac{1}{x \log 10}\)</button>
+            </div>
+        </div>
+
+        <div class="question-card" id="q19">
+            <div class="question-title">Q19. If \(y = \sin^{-1}x + \cos^{-1}x\), \(-1 < x < 1\), then \(\frac{dy}{dx}\) is:</div>
+            <div class="options-container">
+                <button type="button" class="option-btn" onclick="selectOption(19, 'a')">(a) 0</button>
+                <button type="button" class="option-btn" onclick="selectOption(19, 'b')">(b) \(\frac{1}{\sqrt{1-x^2}}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(19, 'c')">(c) \(-\frac{1}{\sqrt{1-x^2}}\)</button>
+                <button type="button" class="option-btn" onclick="selectOption(19, 'd')">(d) \(\sqrt{1-x^2}\)</button>
+            </div>
+        </div>
+
+        <div class="question-card" id="q20">
+            <div class="question-title">Q20. If \(x^2 + xy + y^2 = 7\), then \(\frac{dy}{dx}\) at \((1, 2)\) is:</div>
+            <div class="options-container">
+                <button type="button" class="option-btn" onclick="selectOption(20, 'a')">(a) -4/5</button>
+                <button type="button" class="option-btn" onclick="selectOption(20, 'b')">(b) -2/5</button>
+                <button type="button" class="option-btn" onclick="selectOption(20, 'c')">(c) 4/5</button>
+                <button type="button" class="option-btn" onclick="selectOption(20, 'd')">(d) 2/5</button>
+            </div>
+        </div>
+
+        <div class="submit-container">
+            <button type="button" class="btn-submit" onclick="calculateScore()">Submit Test</button>
+        </div>
+    </form>
+
+    <div id="result-card">
+        <h2>Your Test Result Card</h2>
+        <div class="score-details">
+            <div class="score-box"><strong>Total Questions:</strong> 20</div>
+            <div class="score-box"><strong>Attempted:</strong> <span id="attempted-count">0</span></div>
+            <div class="score-box" style="color: green;"><strong>Correct:</strong> <span id="correct-count">0</span></div>
+            <div class="score-box" style="color: red;"><strong>Incorrect:</strong> <span id="wrong-count">0</span></div>
+            <div class="score-box" style="color: #2980b9;"><strong>Final Score:</strong> <span id="final-score">0</span> / 80</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const answerKey = {
+        1: 'b', 2: 'b', 3: 'b', 4: 'a', 5: 'a',
+        6: 'b', 7: 'a', 8: 'a', 9: 'a', 10: 'a',
+        11: 'a', 12: 'a', 13: 'a', 14: 'a', 15: 'a',
+        16: 'b', 17: 'a', 18: 'd', 19: 'a', 20: 'a'
+    };
+
+    const userAnswers = {};
+    let isTestActive = false;
+
+    function startTest() {
+        // Enable Fullscreen
+        let elem = document.documentElement;
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) { /* Safari */
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE11 */
+            elem.msRequestFullscreen();
+        }
+
+        document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('quizForm').style.display = 'block';
+        isTestActive = true;
+    }
+
+    // Auto-submit on Tab Switch / Window Blur / Exit Fullscreen
+    window.addEventListener('blur', function() {
+        if (isTestActive) {
+            alert('Warning: Tab switch detected! Test automatically submitted.');
+            calculateScore();
+        }
+    });
+
+    document.addEventListener('fullscreenchange', function() {
+        if (!document.fullscreenElement && isTestActive) {
+            alert('Warning: Fullscreen exited! Test automatically submitted.');
+            calculateScore();
+        }
+    });
+
+    function selectOption(questionNum, optionSelected) {
+        if (userAnswers[questionNum]) return;
+
+        userAnswers[questionNum] = optionSelected;
+
+        const qContainer = document.getElementById(`q${questionNum}`);
+        const buttons = qContainer.querySelectorAll('.option-btn');
+
+        buttons.forEach(btn => {
+            btn.disabled = true;
+            if (btn.innerText.startsWith(`(${optionSelected})`)) {
+                btn.classList.add('selected');
+            }
+        });
+    }
+
+    function calculateScore() {
+        if (!isTestActive && document.getElementById('result-card').style.display === 'block') return;
+        
+        isTestActive = false;
+        let correct = 0;
+        let wrong = 0;
+        let attempted = Object.keys(userAnswers).length;
+
+        for (let q in answerKey) {
+            if (userAnswers[q]) {
+                if (userAnswers[q] === answerKey[q]) {
+                    correct++;
+                } else {
+                    wrong++;
+                }
+            }
+        }
+
+        let totalScore = (correct * 4) - (wrong * 1);
+
+        document.getElementById('attempted-count').innerText = attempted;
+        document.getElementById('correct-count').innerText = correct;
+        document.getElementById('wrong-count').innerText = wrong;
+        document.getElementById('final-score').innerText = totalScore;
+
+        document.getElementById('result-card').style.display = 'block';
+        document.getElementById('result-card').scrollIntoView({ behavior: 'smooth' });
+        
+        // Exit Fullscreen
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+        }
+    }
+</script>
+
+</body>
+</html>
